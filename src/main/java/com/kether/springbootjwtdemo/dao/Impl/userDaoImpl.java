@@ -1,4 +1,4 @@
-package com.kether.springbootjwtdemo.dao;
+package com.kether.springbootjwtdemo.dao.Impl;
 
 import com.kether.springbootjwtdemo.dao.userDao;
 import com.kether.springbootjwtdemo.dto.userRequest;
@@ -31,7 +31,7 @@ public class userDaoImpl implements userDao {
      */
     @Override
     public Integer adduser(userRequest userRequest) {
-        String sql = "INSERT INTO `user`(user, password) " +
+        String sql = "INSERT INTO `user`(`user`, password) " +
                 "VALUES (:user, :password)";
         Map<String, Object> params = new HashMap<>();
         params.put("user", userRequest.getUser());
