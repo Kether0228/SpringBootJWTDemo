@@ -4,6 +4,7 @@ import com.kether.springbootjwtdemo.dao.userDao;
 import com.kether.springbootjwtdemo.dto.userRequest;
 import com.kether.springbootjwtdemo.model.user;
 import com.kether.springbootjwtdemo.service.userService;
+import com.kether.springbootjwtdemo.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class userServiceImpl implements userService {
 
     @Autowired
     private PasswordEncoder PasswordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Override
     public Integer adduser(userRequest userRequest) {
@@ -55,10 +59,12 @@ public class userServiceImpl implements userService {
     }
 
     @Override
-    public user login(String username, String password) {
+    public String login(String username, String password) {
         user user = userDao.getUserByUsername(username);
         if (user != null && PasswordEncoder.matches(password, user.getPassword())) {
-            return user;
+            // Generate JWT token
+            String token = jwtUtil.generateToken(user.getUsername());
+            return token;
         }
         throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username or password");
     }
