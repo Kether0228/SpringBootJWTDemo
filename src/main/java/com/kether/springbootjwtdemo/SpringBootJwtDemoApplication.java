@@ -7,4 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootJwtDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootJwtDemoApplication.class, args
+        SpringApplication.run(SpringBootJwtDemoApplication.class, args);
+    }
+
+}
