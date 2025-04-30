@@ -60,9 +60,9 @@ public class userController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<user> login(@RequestBody LoginRequest loginRequest) {
-        user user = userService.login(loginRequest.getUser(), loginRequest.getPassword());
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        String token = userService.login(loginRequest.getUser(), loginRequest.getPassword());
+        return ResponseEntity.status(HttpStatus.OK).body(token);
     }
 
 
