@@ -10,7 +10,7 @@ public interface userService {
     user getUserById(Integer id);
     List<user> getAllUser();
     void deleteUserById(Integer userId);
-    user login(String username, String password);
+    String login(String username, String password);
 
 //    void addRole(Integer userId, Integer roleId);
 //    void deleteUser(Integer id);
